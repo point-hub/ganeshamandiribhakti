@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from "vue"
+
 const scrollTo = (id) => {
   const el = document.getElementById(id)
   if (el) {
@@ -8,20 +10,62 @@ const scrollTo = (id) => {
     })
   }
 }
+
+// toggle mobile menu
+const menuOpen = ref(false)
 </script>
 
 <template>
   <div class="font-sans text-gray-900 bg-white">
     <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+        <!-- Logo -->
         <div class="font-extrabold text-amber-800 text-xl flex items-center gap-2 md:gap-4">
           <img src="/img/logo.png" class="h-10" alt="Ganesha Mandiri Bhakti">
           <span>Ganesha Mandiri Bhakti</span>
         </div>
-        <ul class="flex gap-4 md:gap-8 text-gray-700 font-medium list-none">
+
+        <!-- Desktop menu -->
+        <ul class="hidden md:flex gap-4 md:gap-8 text-gray-700 font-medium list-none">
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('about')">About</a></li>
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('product')">Product</a></li>
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('contact')">Contact</a></li>
+        </ul>
+
+        <!-- Mobile Hamburger Button -->
+        <button 
+          class="md:hidden text-gray-700 focus:outline-none"
+          @click="menuOpen = !menuOpen"
+        >
+          <Icon v-if="!menuOpen" name="uil-bars" size="28" />
+          <Icon v-else name="uil-times" size="28" />
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div v-if="menuOpen" class="md:hidden bg-white border-t shadow-md">
+        <ul class="flex flex-col p-4 gap-4 text-gray-700 font-medium">
+          <li>
+            <a
+              href="javascript:void(0)" class="hover:text-amber-700 transition" 
+              @click="scrollTo('about'); menuOpen = false">
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="javascript:void(0)" class="hover:text-amber-700 transition" 
+              @click="scrollTo('product'); menuOpen = false">
+              Product
+            </a>
+          </li>
+          <li>
+            <a
+              href="javascript:void(0)" class="hover:text-amber-700 transition" 
+              @click="scrollTo('contact'); menuOpen = false">
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -190,25 +234,25 @@ const scrollTo = (id) => {
     </section>
 
     <section id="contact" class="py-24 px-6 max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-amber-900 mb-8">Contact Us</h2>
-      <p class="text-gray-700 mb-6">
-        Looking for partnerships, wholesale orders, or export opportunities? We’re ready to serve you globally.
+      <h2 class="text-4xl font-bold text-amber-900 mb-4">Contact Us</h2>
+      <p class="text-gray-700 font-light text-2xl mb-6">
+        Looking for partnerships, wholesale orders, or export opportunities? <br> We’re ready to serve you globally.
       </p>
 
-      <div class="flex gap-4 justify-center">
+      <div class="flex flex-col md:flex-row items-center gap-4 justify-center">
         <a href="https://wa.me/+6281357747377">
-          <button class="px-6 py-3 mb-8 flex items-center gap-2 rounded-full bg-green-600 text-white hover:bg-amber-800 transition shadow-md">
+          <button class="px-6 py-3 flex items-center gap-2 rounded-full bg-green-600 text-white hover:bg-amber-800 transition shadow-md">
             <Icon name="uil-whatsapp" size="24" /> +6281357747377
           </button>
         </a>
         <a href="mailto:info@ganeshabhakti.com">
-          <button class="px-6 py-3 mb-8 flex items-center gap-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition shadow-md">
+          <button class="px-6 py-3 flex items-center gap-2 rounded-full bg-amber-700 text-white hover:bg-amber-800 transition shadow-md">
             <Icon name="uil-envelope" size="24" /> info@ganeshabhakti.com
           </button>
         </a>
       </div>
 
-      <div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
+      <div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg mt-4">
         <iframe
           class="w-full h-full"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.122053065688!2d112.732423!3d-7.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbeb3c3ac31d%3A0xad129b26097bed7e!2sJl.%20Musi%20No.21%2C%20DR.%20Soetomo%2C%20Kec.%20Tegalsari%2C%20Surabaya%2C%20Jawa%20Timur%2060264!5e0!3m2!1sen!2sid!4v1694490000000!5m2!1sen!2sid"
@@ -233,7 +277,7 @@ const scrollTo = (id) => {
             <Icon name="uil-instagram" size="28" /> @gmbindocoffee
           </a>
         </div>
-        <p>© 2025 Ganesha Mandiri Bhakti - All Rights Reserved</p>
+        <p class="px-4">© 2025 Ganesha Mandiri Bhakti - All Rights Reserved</p>
       </div>
     </footer>
 
