@@ -14,11 +14,11 @@ const scrollTo = (id) => {
   <div class="font-sans text-gray-900 bg-white">
     <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <div class="font-extrabold text-amber-800 text-xl flex items-center gap-4">
+        <div class="font-extrabold text-amber-800 text-xl flex items-center gap-2 md:gap-4">
           <img src="/img/logo.png" class="h-10" alt="Ganesha Mandiri Bhakti">
           <span>Ganesha Mandiri Bhakti</span>
         </div>
-        <ul class="flex gap-8 text-gray-700 font-medium list-none">
+        <ul class="flex gap-4 md:gap-8 text-gray-700 font-medium list-none">
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('about')">About</a></li>
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('product')">Product</a></li>
           <li><a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('contact')">Contact</a></li>
