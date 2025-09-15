@@ -34,7 +34,7 @@ const menuOpen = ref(false)
 
         <!-- Mobile Hamburger Button -->
         <button 
-          class="md:hidden text-gray-700 focus:outline-none"
+          class="md:hidden text-gray-700 focus:outline-none bg-transparent"
           @click="menuOpen = !menuOpen"
         >
           <Icon v-if="!menuOpen" name="uil-bars" size="28" />
