@@ -48,7 +48,8 @@ const scrollTo = (id) => {
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- Left: Image -->
         <div>
-          <img src="/img/logo.jpg" 
+          <img
+            src="/img/logo.jpg" 
             alt="Farmers harvesting coffee" 
             class="rounded-2xl shadow-lg object-cover w-full h-96">
         </div>
@@ -66,8 +67,9 @@ const scrollTo = (id) => {
             <li>☕ Carefully curated beans that reflect Indonesia’s rich heritage</li>
           </ul>
           <div class="mt-8">
-            <button @click="scrollTo('product')"
+            <button 
               class="px-6 py-3 rounded-full bg-amber-700 text-white font-medium shadow-md hover:scale-105 transition">
+              @click="scrollTo('product')"
               Explore Our Coffee
             </button>
           </div>
