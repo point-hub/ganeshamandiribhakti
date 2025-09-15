@@ -7,6 +7,13 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/image',
     '@nuxt/eslint',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@unocss/nuxt'
+  ],
+  unocss: {
+    preflight: false, // Disables UnoCSS's default preflight
+  },
+  css: [
+    '@unocss/reset/tailwind-compat.css'
   ]
 })
