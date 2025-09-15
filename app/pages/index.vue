@@ -68,8 +68,8 @@ const scrollTo = (id) => {
           </ul>
           <div class="mt-8">
             <button 
-              class="px-6 py-3 rounded-full bg-amber-700 text-white font-medium shadow-md hover:scale-105 transition">
-              @click="scrollTo('product')"
+              class="px-6 py-3 rounded-full bg-amber-700 text-white font-medium shadow-md hover:scale-105 transition"
+              @click="scrollTo('product')">
               Explore Our Coffee
             </button>
           </div>
