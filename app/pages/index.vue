@@ -5,7 +5,7 @@ const scrollTo = (id) => {
   const el = document.getElementById(id)
   if (el) {
     el.scrollIntoView({
-      behavior: 'smooth', // smooth animation
+      behavior: 'smooth',
       block: 'start'
     })
   }
@@ -17,6 +17,7 @@ const menuOpen = ref(false)
 
 <template>
   <div class="font-sans text-gray-900 bg-white">
+    <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <!-- Logo -->
@@ -46,36 +47,31 @@ const menuOpen = ref(false)
       <div v-if="menuOpen" class="md:hidden bg-white border-t shadow-md">
         <ul class="flex flex-col p-4 gap-4 text-gray-700 font-medium">
           <li>
-            <a
-              href="javascript:void(0)" class="hover:text-amber-700 transition" 
-              @click="scrollTo('about'); menuOpen = false">
-              About
-            </a>
+            <a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('about'); menuOpen = false">About</a>
           </li>
           <li>
-            <a
-              href="javascript:void(0)" class="hover:text-amber-700 transition" 
-              @click="scrollTo('product'); menuOpen = false">
-              Product
-            </a>
+            <a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('product'); menuOpen = false">Product</a>
           </li>
           <li>
-            <a
-              href="javascript:void(0)" class="hover:text-amber-700 transition" 
-              @click="scrollTo('contact'); menuOpen = false">
-              Contact
-            </a>
+            <a href="javascript:void(0)" class="hover:text-amber-700 transition" @click="scrollTo('contact'); menuOpen = false">Contact</a>
           </li>
         </ul>
       </div>
     </nav>
 
+    <!-- Hero -->
     <section
       id="hero"
       class="h-screen flex flex-col justify-center items-center text-center px-6 bg-cover bg-center mt-18"
       style="background-image: url('/img/bg.png');"
     >
-      <div class="p-10 rounded-2xl text-white">
+      <div
+        v-motion="{
+          initial: { opacity: 0, y: 60 },
+          visibleOnce: { opacity: 1, y: 0, transition: { duration: 800 } }
+        }"
+        class="p-10 rounded-2xl text-white"
+      >
         <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
           Ganesha Mandiri Bhakti
         </h1>
@@ -88,18 +84,28 @@ const menuOpen = ref(false)
       </div>
     </section>
 
+    <!-- About -->
     <section id="about" class="py-24 px-6 max-w-6xl mx-auto">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- Left: Image -->
-        <div>
+        <div
+          v-motion="{
+            initial: { opacity: 0, x: -80 },
+            visibleOnce: { opacity: 1, x: 0, transition: { duration: 700 } }
+          }"
+        >
           <img
             src="/img/logo.jpg" 
             alt="Farmers harvesting coffee" 
             class="rounded-2xl shadow-lg object-cover w-full h-96">
         </div>
 
-        <!-- Right: Text -->
-        <div class="text-left">
+        <div
+          v-motion="{
+            initial: { opacity: 0, x: 80 },
+            visibleOnce: { opacity: 1, x: 0, transition: { duration: 700 } }
+          }"
+          class="text-left"
+        >
           <h2 class="text-4xl font-bold text-amber-900 mb-6">About Us</h2>
           <p class="text-gray-700 leading-relaxed mb-6">
             <span class="font-semibold text-amber-800">Ganesha Mandiri Bhakti</span> is more than a coffee exporter —
@@ -121,14 +127,31 @@ const menuOpen = ref(false)
       </div>
     </section>
 
+    <!-- Products -->
     <section id="product" class="py-24 px-6 bg-slate-800">
-      <h2 class="text-4xl font-bold text-center mb-16 text-amber-100">Our Products</h2>
+      <h2
+        v-motion="{
+          initial: { opacity: 0, y: 50 },
+          visibleOnce: { opacity: 1, y: 0, transition: { duration: 700 } }
+        }"
+        class="text-4xl font-bold text-center mb-16 text-amber-100"
+      >
+        Our Products
+      </h2>
       <div class="grid gap-12 md:grid-cols-2 max-w-6xl mx-auto">
-        <div class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition text-center bg-white">
+        <div
+          v-motion="{
+            initial: { opacity: 0, scale: 0.9 },
+            visibleOnce: { opacity: 1, scale: 1, transition: { duration: 600 } }
+          }"
+          class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition text-center bg-white"
+        >
+          <!-- keep all inner content as is -->
           <h3 class="text-2xl font-semibold mb-3">Robusta Temanggung</h3>
           <img src="/img/robusta-temanggung.jpeg" class="w-full h-56 object-cover rounded-xl mb-6">
           <table class="table-auto border-collapse border border-gray-300 w-full text-left text-gray-700">
             <tbody>
+              <!-- table content unchanged -->
               <tr>
                 <th class="border border-gray-300 px-3 py-2 font-semibold text-gray-900">Origin</th>
                 <td class="border border-gray-300 px-3 py-2">Temanggung, Central Java, Indonesia</td>
@@ -175,13 +198,21 @@ const menuOpen = ref(false)
               </tr>
             </tbody>
           </table>
-
         </div>
-        <div class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition text-center bg-white">
+
+        <div
+          v-motion="{
+            initial: { opacity: 0, scale: 0.9 },
+            visibleOnce: { opacity: 1, scale: 1, transition: { duration: 600, delay: 200 } }
+          }"
+          class="p-6 border rounded-2xl shadow-md hover:shadow-xl transition text-center bg-white"
+        >
+          <!-- keep all inner content as is -->
           <h3 class="text-2xl font-semibold mb-3">Robusta Lampung</h3>
           <img src="/img/robusta-lampung.jpeg" class="w-full h-56 object-cover rounded-xl mb-6">
           <table class="table-auto border-collapse border border-gray-300 w-full text-left text-gray-700">
             <tbody>
+              <!-- table content unchanged -->
               <tr>
                 <th class="border border-gray-300 px-3 py-2 font-semibold text-gray-900">Origin</th>
                 <td class="border border-gray-300 px-3 py-2">West Lampung, Tanggamus, and North Lampung</td>
@@ -228,18 +259,32 @@ const menuOpen = ref(false)
               </tr>
             </tbody>
           </table>
-
         </div>
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="py-24 px-6 max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-amber-900 mb-4">Contact Us</h2>
+      <h2
+        v-motion="{
+          initial: { opacity: 0, y: 40 },
+          visibleOnce: { opacity: 1, y: 0, transition: { duration: 700 } }
+        }"
+        class="text-4xl font-bold text-amber-900 mb-4"
+      >
+        Contact Us
+      </h2>
       <p class="text-gray-700 font-light text-2xl mb-6">
         Looking for partnerships, wholesale orders, or export opportunities? <br> We’re ready to serve you globally.
       </p>
 
-      <div class="flex flex-col md:flex-row items-center gap-4 justify-center">
+      <div
+        v-motion="{
+          initial: { opacity: 0, scale: 0.9 },
+          visibleOnce: { opacity: 1, scale: 1, transition: { duration: 700 } }
+        }"
+        class="flex flex-col md:flex-row items-center gap-4 justify-center"
+      >
         <a href="https://wa.me/+6281357747377">
           <button class="px-6 py-3 flex items-center gap-2 rounded-full bg-green-600 text-white hover:bg-amber-800 transition shadow-md">
             <Icon name="uil-whatsapp" size="24" /> +6281357747377
@@ -252,7 +297,13 @@ const menuOpen = ref(false)
         </a>
       </div>
 
-      <div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg mt-4">
+      <div
+        v-motion="{
+          initial: { opacity: 0, y: 100 },
+          visibleOnce: { opacity: 1, y: 0, transition: { duration: 800 } }
+        }"
+        class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg mt-8"
+      >
         <iframe
           class="w-full h-full"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.122053065688!2d112.732423!3d-7.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbeb3c3ac31d%3A0xad129b26097bed7e!2sJl.%20Musi%20No.21%2C%20DR.%20Soetomo%2C%20Kec.%20Tegalsari%2C%20Surabaya%2C%20Jawa%20Timur%2060264!5e0!3m2!1sen!2sid!4v1694490000000!5m2!1sen!2sid"
@@ -261,10 +312,10 @@ const menuOpen = ref(false)
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         />
-        
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="py-8 text-center bg-amber-50 text-gray-600">
       <div class="flex flex-col items-center gap-4">
         <div class="flex items-center gap-6">
@@ -272,14 +323,13 @@ const menuOpen = ref(false)
             href="https://www.instagram.com/gmbindocoffee"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-gray-600 hover:text-amber-700 transition flex items-center gap-2"
+            class="text-gray-600 hover:text-amber-800 transition"
           >
-            <Icon name="uil-instagram" size="28" /> @gmbindocoffee
+            <Icon name="uil-instagram" size="28" />
           </a>
         </div>
-        <p class="px-4">© 2025 Ganesha Mandiri Bhakti - All Rights Reserved</p>
+        <p class="text-sm">© 2025 Ganesha Mandiri Bhakti. All rights reserved.</p>
       </div>
     </footer>
-
   </div>
 </template>
